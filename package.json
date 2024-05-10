@@ -1,8 +1,8 @@
 {
-  "name": "react-template",
+  "name": "films-react",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://Zetonen.github.io/react-template/",
+  "homepage": "https://haranycheva.github.io/films-react/",
   "dependencies": {
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
