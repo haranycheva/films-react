@@ -4,10 +4,16 @@
   "private": true,
   "homepage": "https://haranycheva.github.io/films-react/",
   "dependencies": {
+    "@fontsource/jetbrains-mono": "^5.0.20",
+    "@fontsource/modak": "^5.0.13",
+    "@fontsource/roboto": "^5.0.13",
+    "axios": "^1.6.8",
+    "modern-normalize": "^2.0.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.1",
     "react-scripts": "5.0.1",
+    "react-star-ratings": "^2.3.0",
     "styled-components": "^6.1.11",
     "web-vitals": "^2.1.4"
   },
