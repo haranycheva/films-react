@@ -1,0 +1,26 @@
+.swiper-button-prev:after,
+.swiper-button-next:after {
+  color: #e71d36;
+
+  font-family: Modak;
+  font-size: 96px;
+}
+
+.swiper-button-prev:after {
+  content: "<";
+}
+
+.swiper-button-next:after {
+  content: ">";
+}
+
+.swiper-button-next, .swiper-button-prev{
+    top: 5%;
+    width: 43px;
+    height: 97px;
+}
+
+.swiper{
+    width: 880px;
+    padding-top: 150px;
+}

@@ -9,9 +9,6 @@ export function Header() {
             <StyledNavLink to="/">main</StyledNavLink>
           </li>
           <li>
-            <StyledNavLink to="films">films</StyledNavLink>
-          </li>
-          <li>
             <StyledNavLink to="genres">genres</StyledNavLink>
           </li>
         </NavList>

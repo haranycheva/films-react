@@ -1,6 +1,6 @@
 import { getMostPopularFilm } from "fetch";
 import { useEffect, useState } from "react";
-import { Conrtainer, Title } from "reapitedStyles";
+import { Container, Title } from "reapitedStyles";
 import "@fontsource/jetbrains-mono"; // Імпортуйте шрифт Roboto
 
 import {
@@ -10,27 +10,24 @@ import {
   WrapperForImageAndText,
 } from "./MostPopular.styled";
 import StarRatings from "react-star-ratings";
+import { tryCatchFn } from "functions/tryCatchFn";
+import { useError } from "hooks/useError";
 
 export function MostPopular() {
   const [film, setFilm] = useState(null);
+  const [error, setError] = useError()
   useEffect(() => {
     const fetch = async () => {
-      try {
         const data = await getMostPopularFilm();
         setFilm(data);
-      } catch (error) {
-        console.log("err:", error);
-      } finally {
-      }
     };
-    fetch();
-  }, []);
-  console.log(film);
+    tryCatchFn(fetch, setError)
+  }, [setError]);
   return (
-    <SectionMP>
-      <Conrtainer>
+    <SectionMP className="most-popular-film">
+      <Container>
         <Title>The most popular film</Title>
-        {film ? (
+        {film && (
           <>
               <WrapperForImageAndText>
                 <img
@@ -48,14 +45,12 @@ export function MostPopular() {
                     name="rating"
                     starEmptyColor="#AEB2BC"
                   />
-                </div>{" "}
+                </div>
               </WrapperForImageAndText>
               <Description>{film.overview}</Description>
           </>
-        ) : (
-          ""
         )}
-      </Conrtainer>
+      </Container>
     </SectionMP>
   );
 }

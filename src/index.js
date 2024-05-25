@@ -1,5 +1,4 @@
 
-import { GlobalStyled } from 'GlobalStyle.styled';
 import { App } from 'components/App/App';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter } from 'react-router-dom';

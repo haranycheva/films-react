@@ -5,7 +5,7 @@ export const Title = styled.h2`
   font-size: 96px;
 `;
 
-export const Conrtainer = styled.div`
+export const Container = styled.div`
   max-width: 1215px;
   padding: 0 15px;
   margin: 0 auto;
