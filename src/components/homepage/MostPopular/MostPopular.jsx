@@ -11,17 +11,17 @@ import {
 } from "./MostPopular.styled";
 import StarRatings from "react-star-ratings";
 import { tryCatchFn } from "functions/tryCatchFn";
-import { useError } from "hooks/useError";
+import { useErrorAndLoading } from "../../../hooks/useErrorAndLoading";
 
 export function MostPopular() {
   const [film, setFilm] = useState(null);
-  const [error, setError] = useError()
+  const [error, setError, isLoading, setLoading]= useErrorAndLoading()
   useEffect(() => {
     const fetch = async () => {
         const data = await getMostPopularFilm();
         setFilm(data);
     };
-    tryCatchFn(fetch, setError)
+    tryCatchFn(fetch,setLoading, setError)
   }, [setError]);
   return (
     <SectionMP className="most-popular-film">

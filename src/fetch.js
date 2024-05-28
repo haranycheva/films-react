@@ -25,3 +25,8 @@ export async function getFilmsByGenre(genreId){
   const res = await axios.get(`/3/discover/movie?with_genres=${genreId}`); 
   return res.data.results; 
 }
+
+export async function getFilm(filmId){
+  const res = await axios.get(`3/movie/${filmId}`); 
+  return res.data; 
+}

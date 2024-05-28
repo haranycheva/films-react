@@ -22,7 +22,6 @@ export const FilmCardWrapp = styled.div`
 `;
 
 export function SwiperPopular({ filmList }) {
-  console.log(filmList);
   return (
     <Swiper
       // install Swiper modules

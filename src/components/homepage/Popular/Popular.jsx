@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { getPopularFilms } from "fetch";
 import styled from "styled-components";
 import { tryCatchFn } from "functions/tryCatchFn";
-import { useError } from "hooks/useError";
+import {useErrorAndLoading } from "../../../hooks/useErrorAndLoading";
 import { Loader } from "components/reapeated/Loader";
 
 export const SectionPopular = styled.section`
@@ -14,19 +14,19 @@ export const SectionPopular = styled.section`
 
 export function Popular() {
   const [filmList, setFilmList] = useState(null);
-  const [error, setError] = useError();
+  const [error, setError, isLoading, setLoading]= useErrorAndLoading();
   useEffect(() => {
     const fetch = async () => {
       const data = await getPopularFilms();
       setFilmList(data);
     };
-    tryCatchFn(fetch,setError);
+    tryCatchFn(fetch, setLoading, setError);
   }, [setError]);
   return (
     <>
       {error && <p>Ooooooooooops.... Something went wrong.....</p>}
       {filmList?.length > 0 && (
-        <SectionPopular className="popular-films">
+        <SectionPopular>
           <Container>
             <Title>Popular films</Title>
             <SwiperPopular filmList={filmList} />

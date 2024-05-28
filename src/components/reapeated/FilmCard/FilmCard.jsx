@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styled from "styled-components";
 
 const FilmTitle = styled.h4`
@@ -9,7 +10,7 @@ const FilmTitle = styled.h4`
 
 export function FilmCard({ film }) {
   return (
-    <>
+    <Link to={"/" + film.id}>
       <img
         width="208px"
         height="278px"
@@ -17,6 +18,6 @@ export function FilmCard({ film }) {
         alt="poster"
       />
       <FilmTitle>{film.title.slice(0, 20)}</FilmTitle>
-    </>
+    </Link>
   );
 }
