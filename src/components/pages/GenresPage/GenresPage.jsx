@@ -21,7 +21,7 @@ export function GenresPage() {
     };
     tryCatchFn(fetch, setLoading, setError);
   }, [setError, setLoading]);
-  console.log(genresList);
+  console.log(isLoading);
   return (
     <section>
     {error && <p>Ooooooooooops.... Something went wrong.....</p>}

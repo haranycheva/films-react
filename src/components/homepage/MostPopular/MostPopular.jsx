@@ -23,6 +23,7 @@ export function MostPopular() {
     };
     tryCatchFn(fetch,setLoading,setError)
   }, [setError, setLoading]);
+  console.log(isLoading);
   return (
     <SectionMP className="most-popular-film">
       <Container>

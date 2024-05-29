@@ -33,7 +33,7 @@ export function FilmPage() {
     };
     tryCatchFn(fetch, setLoading, setError);
   }, [filmId, setError, setLoading]);
-  console.log(film);
+  console.log(isLoading);
   return (
     <section>
     {error && <p>Ooooooooooops.... Something went wrong.....</p>}

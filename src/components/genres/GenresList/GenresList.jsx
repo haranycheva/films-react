@@ -30,6 +30,7 @@ export function GenresList() {
     };
     tryCatchFn(fetch, setLoading, setError);
   }, [setError, setLoading]);
+  console.log(isLoading);
   return (
     <> 
     {error && <p>Ooooooooooops.... Something went wrong.....</p>}
