@@ -47,7 +47,7 @@ export function CardsList() {
     setLoading(true)
     tryCatchFn(fetch,setLoading, setError);
     setLoading(false)
-  }, [genreId, setError]);
+  }, [genreId, setError, setLoading]);
   return (
     <>
       {error && <p>Ooooooooooops.... Something went wrong.....</p>}
