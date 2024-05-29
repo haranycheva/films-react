@@ -29,16 +29,19 @@ export function GenresList() {
       setGenresList(data);
     };
     tryCatchFn(fetch, setLoading, setError);
-  }, [setError]);
+  }, [setError, setLoading]);
   return (
-    genresList?.length > 0 && (
-      <List>
-        {genresList.map((genre) => (
-          <GenreLink key={genre.id} to={`${genre.id}`}>
-            {genre.name}
-          </GenreLink>
-        ))}
-      </List>
-    )
+    <> 
+    {error && <p>Ooooooooooops.... Something went wrong.....</p>}
+      {genresList?.length > 0 && (
+        <List>
+          {genresList.map((genre) => (
+            <GenreLink key={genre.id} to={`${genre.id}`}>
+              {genre.name}
+            </GenreLink>
+          ))}
+        </List>
+      )}
+    </>
   );
 }

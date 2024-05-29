@@ -20,10 +20,11 @@ export function GenresPage() {
       setGenresList(data);
     };
     tryCatchFn(fetch, setLoading, setError);
-  }, [setError]);
+  }, [setError, setLoading]);
   console.log(genresList);
   return (
     <section>
+    {error && <p>Ooooooooooops.... Something went wrong.....</p>}
       {genresList?.length > 0 && (
         <GenresWrapp>
           <GenresList genres={genresList} />

@@ -21,11 +21,12 @@ export function MostPopular() {
         const data = await getMostPopularFilm();
         setFilm(data);
     };
-    tryCatchFn(fetch,setLoading, setError)
-  }, [setError]);
+    tryCatchFn(fetch,setLoading,setError)
+  }, [setError, setLoading]);
   return (
     <SectionMP className="most-popular-film">
       <Container>
+      {error && <p>Ooooooooooops.... Something went wrong.....</p>}
         <Title>The most popular film</Title>
         {film && (
           <>

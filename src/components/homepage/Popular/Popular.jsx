@@ -5,7 +5,6 @@ import { getPopularFilms } from "fetch";
 import styled from "styled-components";
 import { tryCatchFn } from "functions/tryCatchFn";
 import {useErrorAndLoading } from "../../../hooks/useErrorAndLoading";
-import { Loader } from "components/reapeated/Loader";
 
 export const SectionPopular = styled.section`
   padding-top: 20px;
@@ -21,7 +20,7 @@ export function Popular() {
       setFilmList(data);
     };
     tryCatchFn(fetch, setLoading, setError);
-  }, [setError]);
+  }, [setError, setLoading]);
   return (
     <>
       {error && <p>Ooooooooooops.... Something went wrong.....</p>}

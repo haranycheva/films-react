@@ -32,10 +32,11 @@ export function FilmPage() {
       setFilm(data);
     };
     tryCatchFn(fetch, setLoading, setError);
-  }, [setError]);
+  }, [filmId, setError, setLoading]);
   console.log(film);
   return (
     <section>
+    {error && <p>Ooooooooooops.... Something went wrong.....</p>}
       {film && (
         <Wripper>
           <Title>{film.title}</Title>
