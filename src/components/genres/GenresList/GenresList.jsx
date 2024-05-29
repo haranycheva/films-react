@@ -14,7 +14,7 @@ const GenreLink = styled(NavLink)`
     background-color: #2EC4B6;
   }
 `;
-
+//
 export const List = styled.ul`
   padding-top: 55px;
   background-color: #c6d2ed;
