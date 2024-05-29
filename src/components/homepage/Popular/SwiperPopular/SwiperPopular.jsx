@@ -20,7 +20,7 @@ export const FilmCardWrapp = styled.div`
     background-color: #C6D2ED;
   }
 `;
-
+// 
 export function SwiperPopular({ filmList }) {
   return (
     <Swiper
