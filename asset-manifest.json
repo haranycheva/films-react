@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/films-react/static/css/main.96000923.css",
-    "main.js": "/films-react/static/js/main.c241df43.js",
+    "main.js": "/films-react/static/js/main.632fdba7.js",
     "static/media/modak-devanagari-400-normal.woff2": "/films-react/static/media/modak-devanagari-400-normal.116e40a85510053e57c6.woff2",
     "static/media/modak-devanagari-400-normal.woff": "/films-react/static/media/modak-devanagari-400-normal.d2acbba55187ff82063c.woff",
     "static/media/modak-latin-400-normal.woff2": "/films-react/static/media/modak-latin-400-normal.158b0b033afb19c5b9be.woff2",
@@ -22,10 +22,10 @@
     "static/media/jetbrains-mono-cyrillic-ext-400-normal.woff2": "/films-react/static/media/jetbrains-mono-cyrillic-ext-400-normal.116395f5d16bf9918fd9.woff2",
     "index.html": "/films-react/index.html",
     "main.96000923.css.map": "/films-react/static/css/main.96000923.css.map",
-    "main.c241df43.js.map": "/films-react/static/js/main.c241df43.js.map"
+    "main.632fdba7.js.map": "/films-react/static/js/main.632fdba7.js.map"
   },
   "entrypoints": [
     "static/css/main.96000923.css",
-    "static/js/main.c241df43.js"
+    "static/js/main.632fdba7.js"
   ]
 }
