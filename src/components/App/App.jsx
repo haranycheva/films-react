@@ -1,3 +1,5 @@
+
+
 import { GlobalStyled } from "GlobalStyle.styled";
 import { Layout } from "components/Layout/Layout";
 import { CardsList } from "components/genres/CardsList/CardsList";

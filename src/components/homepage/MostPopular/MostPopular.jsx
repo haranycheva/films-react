@@ -1,5 +1,6 @@
+
 import { getMostPopularFilm } from "fetch";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { Container, Title } from "reapitedStyles";
 import "@fontsource/jetbrains-mono"; // Імпортуйте шрифт Roboto
 
@@ -11,11 +12,13 @@ import {
 } from "./MostPopular.styled";
 import StarRatings from "react-star-ratings";
 import { tryCatchFn } from "functions/tryCatchFn";
-import { useErrorAndLoading } from "../../../hooks/useErrorAndLoading";
+import { useCreateLoading } from "hooks/useCreateLoading";
+import { useCreateError } from "hooks/useCreateError";
 
 export function MostPopular() {
   const [film, setFilm] = useState(null);
-  const [error, setError, isLoading, setLoading]= useErrorAndLoading()
+  const setLoading = useCallback(useCreateLoading(), []);
+  const setError = useCallback(useCreateError(), []);
   useEffect(() => {
     const fetch = async () => {
         const data = await getMostPopularFilm();
@@ -23,11 +26,9 @@ export function MostPopular() {
     };
     tryCatchFn(fetch,setLoading,setError)
   }, [setError, setLoading]);
-  console.log(isLoading);
   return (
     <SectionMP className="most-popular-film">
       <Container>
-      {error && <p>Ooooooooooops.... Something went wrong.....</p>}
         <Title>The most popular film</Title>
         {film && (
           <>

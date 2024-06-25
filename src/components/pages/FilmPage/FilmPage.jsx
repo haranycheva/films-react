@@ -1,11 +1,12 @@
 import { getFilm } from "fetch";
 import { tryCatchFn } from "functions/tryCatchFn";
-import { useErrorAndLoading } from "../../../hooks/useErrorAndLoading";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { Title } from "reapitedStyles";
 import styled from "styled-components";
 import StarRatings from "react-star-ratings";
+import { useCreateLoading } from "hooks/useCreateLoading";
+import { useCreateError } from "hooks/useCreateError";
 
 const Description = styled.p`
   color: #000;
@@ -25,7 +26,8 @@ gap: 20px;
 export function FilmPage() {
   const { filmId } = useParams();
   const [film, setFilm] = useState(null);
-  const [error, setError, isLoading, setLoading] = useErrorAndLoading();
+  const setLoading = useCallback(useCreateLoading(), []);
+  const setError = useCallback(useCreateError(), []);
   useEffect(() => {
     const fetch = async () => {
       const data = await getFilm(filmId);
@@ -33,10 +35,8 @@ export function FilmPage() {
     };
     tryCatchFn(fetch, setLoading, setError);
   }, [filmId, setError, setLoading]);
-  console.log(isLoading);
   return (
     <section>
-    {error && <p>Ooooooooooops.... Something went wrong.....</p>}
       {film && (
         <Wripper>
           <Title>{film.title}</Title>

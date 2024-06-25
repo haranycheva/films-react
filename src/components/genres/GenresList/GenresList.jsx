@@ -1,9 +1,10 @@
 import { getFilmGenres } from "fetch";
 import { tryCatchFn } from "functions/tryCatchFn";
-import { useErrorAndLoading} from "../../../hooks/useErrorAndLoading";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
+import { useCreateLoading } from "hooks/useCreateLoading";
+import { useCreateError } from "hooks/useCreateError";
 
 const GenreLink = styled(NavLink)`
   color: #011627;
@@ -22,7 +23,8 @@ export const List = styled.ul`
 
 export function GenresList() {
   const [genresList, setGenresList] = useState(null);
-  const[error, setError, isLoading, setLoading] = useErrorAndLoading();
+  const setLoading = useCallback(useCreateLoading(), []);
+  const setError = useCallback(useCreateError(), []);
   useEffect(() => {
     const fetch = async () => {
       const data = await getFilmGenres();
@@ -30,10 +32,8 @@ export function GenresList() {
     };
     tryCatchFn(fetch, setLoading, setError);
   }, [setError, setLoading]);
-  console.log(isLoading);
   return (
     <> 
-    {error && <p>Ooooooooooops.... Something went wrong.....</p>}
       {genresList?.length > 0 && (
         <List>
           {genresList.map((genre) => (

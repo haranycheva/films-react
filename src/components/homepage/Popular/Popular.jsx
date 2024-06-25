@@ -1,10 +1,11 @@
 import { Container, Title } from "reapitedStyles";
 import { SwiperPopular } from "./SwiperPopular/SwiperPopular";
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { getPopularFilms } from "fetch";
 import styled from "styled-components";
 import { tryCatchFn } from "functions/tryCatchFn";
-import {useErrorAndLoading } from "../../../hooks/useErrorAndLoading";
+import { useCreateLoading } from "hooks/useCreateLoading";
+import { useCreateError } from "hooks/useCreateError";
 
 export const SectionPopular = styled.section`
   padding-top: 20px;
@@ -13,18 +14,18 @@ export const SectionPopular = styled.section`
 
 export function Popular() {
   const [filmList, setFilmList] = useState(null);
-  const [error, setError, isLoading, setLoading]= useErrorAndLoading();
+  const setLoading = useCallback(useCreateLoading(), []);
+  const setError = useCallback(useCreateError(), []);
+  console.log(1);
   useEffect(() => {
     const fetch = async () => {
       const data = await getPopularFilms();
       setFilmList(data);
     };
     tryCatchFn(fetch, setLoading, setError);
-  }, [setError, setLoading]);
-  console.log(isLoading);
+  }, [setLoading, setError]);
   return (
     <>
-      {error && <p>Ooooooooooops.... Something went wrong.....</p>}
       {filmList?.length > 0 && (
         <SectionPopular>
           <Container>
