@@ -13,6 +13,13 @@ import { getFilm, getFilmGenres, getFilmsByGenre, getMostPopularFilm, getPopular
 //     },
 //   },
 // });
+
+const reducerTemplate = (propName) => {
+  return (state, action) => {
+    state.films[propName] = action.payload;
+  }
+}
+
 const stateSlice = createSlice({
   name: "appState",
   initialState: {
@@ -28,25 +35,14 @@ const stateSlice = createSlice({
   },
   extraReducers: (builder) =>
     builder
-      .addCase(getMostPopularFilm.fulfilled, (state, action) => {
-        state.films.mostPopularOne = action.payload;
-      })
-      .addCase(getPopularFilms.fulfilled, (state, action) => {
-        state.films.mostPopular = action.payload;
-      })
-      .addCase(getFilmGenres.fulfilled, (state, action) => {
-        state.films.genres = action.payload;
-      })
-      .addCase(getFilmsByGenre.fulfilled, (state, action) => {
-        state.films.filmsByGenres = action.payload;
-      })
-      .addCase(getFilm.fulfilled, (state, action) => {
-        state.films.film = action.payload;
-      })
+      .addCase(getMostPopularFilm.fulfilled, reducerTemplate("mostPopularOne"))
+      .addCase(getPopularFilms.fulfilled, reducerTemplate("mostPopular"))
+      .addCase(getFilmGenres.fulfilled, reducerTemplate("genres"))
+      .addCase(getFilmsByGenre.fulfilled, reducerTemplate("filmsByGenres"))
+      .addCase(getFilm.fulfilled, reducerTemplate("film"))
       .addMatcher(
         (action) => action.type.endsWith("pending"),
         (state) => {
-          console.log("pending");
           state.isLoading = true;
           state.error = null;
         }
@@ -54,7 +50,6 @@ const stateSlice = createSlice({
       .addMatcher(
         (action) => action.type.endsWith("rejected"),
         (state, action) => {
-          console.log("rejected");
           state.isLoading = false;
           state.error = action.payload;
         }
@@ -62,7 +57,6 @@ const stateSlice = createSlice({
       .addMatcher(
         (action) => action.type.endsWith("fulfilled"),
         (state) => {
-          console.log("fulfilled");
           state.isLoading = false;
         }
       ),
