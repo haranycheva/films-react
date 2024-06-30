@@ -1,11 +1,10 @@
 import { Container, Title } from "reapitedStyles";
 import { SwiperPopular } from "./SwiperPopular/SwiperPopular";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect} from "react";
 import { getPopularFilms } from "fetch";
 import styled from "styled-components";
-import { tryCatchFn } from "functions/tryCatchFn";
-import { useCreateLoading } from "hooks/useCreateLoading";
-import { useCreateError } from "hooks/useCreateError";
+import { useDispatch, useSelector } from "react-redux";
+import { selectMostPopular } from "../../../redux/selectors";
 
 export const SectionPopular = styled.section`
   padding-top: 20px;
@@ -13,17 +12,11 @@ export const SectionPopular = styled.section`
 `;
 
 export function Popular() {
-  const [filmList, setFilmList] = useState(null);
-  const setLoading = useCallback(useCreateLoading(), []);
-  const setError = useCallback(useCreateError(), []);
-  console.log(1);
+  const filmList = useSelector(selectMostPopular)
+  const dispatch = useDispatch();
   useEffect(() => {
-    const fetch = async () => {
-      const data = await getPopularFilms();
-      setFilmList(data);
-    };
-    tryCatchFn(fetch, setLoading, setError);
-  }, [setLoading, setError]);
+    dispatch(getPopularFilms())
+  }, [dispatch]);
   return (
     <>
       {filmList?.length > 0 && (

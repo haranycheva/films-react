@@ -1,9 +1,7 @@
-
+import "@fontsource/jetbrains-mono";
 import { getMostPopularFilm } from "fetch";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect } from "react";
 import { Container, Title } from "reapitedStyles";
-import "@fontsource/jetbrains-mono"; // Імпортуйте шрифт Roboto
-
 import {
   Description,
   FilmTitle,
@@ -11,21 +9,15 @@ import {
   WrapperForImageAndText,
 } from "./MostPopular.styled";
 import StarRatings from "react-star-ratings";
-import { tryCatchFn } from "functions/tryCatchFn";
-import { useCreateLoading } from "hooks/useCreateLoading";
-import { useCreateError } from "hooks/useCreateError";
+import { selectMostPopularFilm } from "../../../redux/selectors";
+import { useDispatch, useSelector } from "react-redux";
 
 export function MostPopular() {
-  const [film, setFilm] = useState(null);
-  const setLoading = useCallback(useCreateLoading(), []);
-  const setError = useCallback(useCreateError(), []);
+  const dispatch = useDispatch()
+  const film = useSelector(selectMostPopularFilm)
   useEffect(() => {
-    const fetch = async () => {
-        const data = await getMostPopularFilm();
-        setFilm(data);
-    };
-    tryCatchFn(fetch,setLoading,setError)
-  }, [setError, setLoading]);
+    dispatch(getMostPopularFilm())
+  }, [dispatch]);
   return (
     <SectionMP className="most-popular-film">
       <Container>

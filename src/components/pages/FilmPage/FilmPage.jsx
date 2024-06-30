@@ -1,12 +1,11 @@
 import { getFilm } from "fetch";
-import { tryCatchFn } from "functions/tryCatchFn";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import { Title } from "reapitedStyles";
 import styled from "styled-components";
 import StarRatings from "react-star-ratings";
-import { useCreateLoading } from "hooks/useCreateLoading";
-import { useCreateError } from "hooks/useCreateError";
+import { useDispatch, useSelector } from "react-redux";
+import { selectFilm } from "../../../redux/selectors";
 
 const Description = styled.p`
   color: #000;
@@ -25,16 +24,11 @@ gap: 20px;
 
 export function FilmPage() {
   const { filmId } = useParams();
-  const [film, setFilm] = useState(null);
-  const setLoading = useCallback(useCreateLoading(), []);
-  const setError = useCallback(useCreateError(), []);
+  const film = useSelector(selectFilm);
+  const dispatch = useDispatch();
   useEffect(() => {
-    const fetch = async () => {
-      const data = await getFilm(filmId);
-      setFilm(data);
-    };
-    tryCatchFn(fetch, setLoading, setError);
-  }, [filmId, setError, setLoading]);
+    dispatch(getFilm(filmId))
+  }, [filmId, dispatch]);
   return (
     <section>
       {film && (

@@ -1,10 +1,9 @@
 import { FilmCard } from "components/reapeated/FilmCard/FilmCard";
 import { getFilmsByGenre } from "fetch";
-import { tryCatchFn } from "functions/tryCatchFn";
-import { useCreateError } from "hooks/useCreateError";
-import { useCreateLoading } from "hooks/useCreateLoading";
-import { useCallback, useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
+import { selectFilmsByGenres } from "../../../redux/selectors";
 import styled from "styled-components";
 
 export const List = styled.ul`
@@ -29,17 +28,12 @@ export const Item = styled.li`
 `;
 
 export function CardsList() {
-  const [filmsList, setFilmsList] = useState(null);
-  const setLoading = useCallback(useCreateLoading(), []);
-  const setError = useCallback(useCreateError(), []);
+  const filmsList = useSelector(selectFilmsByGenres)
+  const dispatch = useDispatch();
   const { genreId } = useParams();
   useEffect(() => {
-    const fetch = async () => {
-      const data = await getFilmsByGenre(genreId);
-      setFilmsList(data);
-    };
-    tryCatchFn(fetch, setLoading, setError);
-  }, [genreId, setError, setLoading]);
+    dispatch(getFilmsByGenre(genreId))
+  }, [dispatch, genreId]);
   return (
     <>
       <List>

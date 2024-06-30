@@ -1,10 +1,9 @@
 import { getFilmGenres } from "fetch";
-import { tryCatchFn } from "functions/tryCatchFn";
-import { useCallback, useEffect, useState } from "react";
+import {  useEffect,} from "react";
 import { NavLink } from "react-router-dom";
 import styled from "styled-components";
-import { useCreateLoading } from "hooks/useCreateLoading";
-import { useCreateError } from "hooks/useCreateError";
+import { useDispatch, useSelector } from "react-redux";
+import { selectGenres } from "../../../redux/selectors";
 
 const GenreLink = styled(NavLink)`
   color: #011627;
@@ -22,16 +21,11 @@ export const List = styled.ul`
 `;
 
 export function GenresList() {
-  const [genresList, setGenresList] = useState(null);
-  const setLoading = useCallback(useCreateLoading(), []);
-  const setError = useCallback(useCreateError(), []);
+  const genresList= useSelector(selectGenres);
+  const dispatch = useDispatch()
   useEffect(() => {
-    const fetch = async () => {
-      const data = await getFilmGenres();
-      setGenresList(data);
-    };
-    tryCatchFn(fetch, setLoading, setError);
-  }, [setError, setLoading]);
+    dispatch(getFilmGenres())
+  }, [dispatch]);
   return (
     <> 
       {genresList?.length > 0 && (
